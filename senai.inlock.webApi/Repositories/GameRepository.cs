@@ -46,5 +46,24 @@ namespace senai.inlock.webApi.Repositories
 
             return games;
         }
+
+        public void Create(GameDomain game)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Game VALUES (@IdStudio, @Name, @Description, @ReleaseDate, Price)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdStudio", game.IdStudio);
+                    command.Parameters.AddWithValue("@Name", game.Name);
+                    command.Parameters.AddWithValue("@Description", game.Description);
+                    command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate);
+                    command.Parameters.AddWithValue("@Price", game.Price);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
