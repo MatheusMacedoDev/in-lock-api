@@ -10,6 +10,6 @@ namespace senai.inlock.webApi.Domains
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O nome do estúdio é obrigatório")]
-        public int Name { get; set; }
+        public string Name { get; set; }
     }
 }

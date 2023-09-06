@@ -14,7 +14,7 @@ namespace senai.inlock.webApi.Repositories
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * From Game INNER JOIN Studio ON Game.IdStudio = Studio.Id;";
+                string query = "SELECT *, Studio.Name AS StudioName From Game INNER JOIN Studio ON Game.IdStudio = Studio.Id;";
 
                 connection.Open();
 
@@ -31,7 +31,12 @@ namespace senai.inlock.webApi.Repositories
                             Name = reader["Name"].ToString(),
                             Description = reader["Description"].ToString(),
                             ReleaseDate = DateTime.Parse(reader["ReleaseDate"].ToString()),
-                            Price = float.Parse(reader["Price"].ToString())
+                            Price = float.Parse(reader["Price"].ToString()),
+                            StudioDomain = new StudioDomain()
+                            {
+                                Id = Convert.ToInt32(reader["IdStudio"]),
+                                Name = reader["StudioName"].ToString()
+                            }
                         };
 
                         games.Add(game);

@@ -18,5 +18,7 @@ namespace senai.inlock.webApi.Domains
         public string Description { get; set; }
         public DateTime ReleaseDate { get;  set; }
         public float Price { get; set; }
+
+        public StudioDomain StudioDomain { get; set; }
     }
 }
