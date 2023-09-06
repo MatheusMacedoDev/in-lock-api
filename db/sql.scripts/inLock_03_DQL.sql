@@ -1,30 +1,30 @@
 USE inlock_games;
 
-SELECT * FROM TiposUsuario;
+SELECT * FROM UserType;
 
-SELECT * FROM Usuario;
+SELECT * FROM [User];
 
-SELECT * FROM Estudio;
+SELECT * FROM Studio;
 
-SELECT * FROM Jogo;
+SELECT * FROM Game;
 
-SELECT Jogo.Nome AS Jogo,Estudio.Nome AS Estudio From Jogo
-INNER JOIN Estudio
-ON Jogo.IdEstudio = Estudio.IdEstudio;
+SELECT Game.[Name] AS Jogo, Studio.[Name] AS Estúdio From Game
+INNER JOIN Studio
+ON Game.IdStudio = Studio.Id;
 
-SELECT Estudio.Nome AS Estudio,Jogo.Nome AS Jogo FROM Estudio
-LEFT JOIN Jogo
-ON Estudio.IdEstudio = Jogo.IdEstudio;
+SELECT Studio.[Name] AS Estúdio, Game.[Name] AS Jogo FROM Studio
+LEFT JOIN Game
+ON Studio.Id = Game.IdStudio;
 
-SELECT * FROM Usuario WHERE Email = 'cliente@cliente.com' AND Senha = 'cliente';
+SELECT * FROM [User] WHERE Email = 'cliente@cliente.com' AND [Password] = 'cliente';
 
-SELECT * FROM Jogo WHERE IdJogo = 4;
+SELECT * FROM Game WHERE Id = 4;
 
-SELECT * FROM Estudio WHERE IdEstudio = 2;
+SELECT * FROM Studio WHERE Id = 2;
 
-SELECT Estudio.IdEstudio,Estudio.Nome,Jogo.Nome FROM Estudio
-LEFT JOIN Jogo
-ON Estudio.IdEstudio = Jogo.IdEstudio;
+SELECT Studio.Id, Studio.[Name], Game.[Name] FROM Studio
+LEFT JOIN Game
+ON Studio.Id = Game.IdStudio;
 
 
 
