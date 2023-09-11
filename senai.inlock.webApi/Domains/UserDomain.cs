@@ -15,7 +15,6 @@ namespace senai.inlock.webApi.Domains
         [Required(ErrorMessage = "O usuário deve possuir e-mail!")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "O usuário deve possuir senha!")]
         public string Password { get; set; }
     }
 }
