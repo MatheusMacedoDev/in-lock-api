@@ -12,6 +12,8 @@ SELECT Game.[Name] AS Jogo, Studio.[Name] AS Estúdio From Game
 INNER JOIN Studio
 ON Game.IdStudio = Studio.Id;
 
+SELECT * FROM Game JOIN Studio ON Game.IdStudio = Studio.Id;
+
 SELECT Studio.[Name] AS Estúdio, Game.[Name] AS Jogo FROM Studio
 LEFT JOIN Game
 ON Studio.Id = Game.IdStudio;
