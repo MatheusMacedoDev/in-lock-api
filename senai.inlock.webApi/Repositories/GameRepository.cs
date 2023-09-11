@@ -51,14 +51,16 @@ namespace senai.inlock.webApi.Repositories
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Game VALUES (@IdStudio, @Name, @Description, @ReleaseDate, Price)";
+                string query = "INSERT INTO Game VALUES (@IdStudio, @Name, @Description, @ReleaseDate, @Price)";
+
+                connection.Open();
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@IdStudio", game.IdStudio);
                     command.Parameters.AddWithValue("@Name", game.Name);
                     command.Parameters.AddWithValue("@Description", game.Description);
-                    command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate);
+                    command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate.Date.ToString());
                     command.Parameters.AddWithValue("@Price", game.Price);
 
                     command.ExecuteNonQuery();

@@ -32,5 +32,20 @@ namespace senai.inlock.webApi.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        [HttpPost]
+        public IActionResult Create(GameDomain game)
+        {
+            try
+            {
+                gameRepository.Create(game);
+
+                return StatusCode(201);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }
