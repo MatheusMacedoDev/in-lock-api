@@ -10,7 +10,19 @@ namespace senai.inlock.webApi.Repositories
 
         public void Create(StudioDomain studio)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Studio VALUES (@Name)";
+
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", studio.Name);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<StudioDomain> ListAll()
