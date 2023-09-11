@@ -19,6 +19,10 @@ namespace senai.inlock.webApi.Controllers
             gameRepository = new GameRepository();
         }
 
+        /// <summary>
+        /// É o endpoint em que são listados todos os jogos
+        /// </summary>
+        /// <returns>Resposta ao usuário</returns>
         [HttpGet]
         public IActionResult FindAll()
         {
@@ -34,6 +38,10 @@ namespace senai.inlock.webApi.Controllers
             }
         }
 
+        /// <summary>
+        /// É o endpoint em que é criado um jogo
+        /// </summary>
+        /// <returns>Resposta ao usuário</returns>
         [HttpPost]
         [Authorize(Roles = "2")]
         public IActionResult Create(GameDomain game)

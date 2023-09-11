@@ -19,6 +19,10 @@ namespace senai.inlock.webApi.Controllers
             _studioRepository = new StudioRepository();
         }
 
+        /// <summary>
+        /// É o endpoint em que são listados todos os estúdios
+        /// </summary>
+        /// <returns>Resposta ao usuário</returns>
         [HttpGet]
         public IActionResult ListAll()
         {
@@ -34,6 +38,10 @@ namespace senai.inlock.webApi.Controllers
             }
         }
 
+        /// <summary>
+        /// É o endpoint em que se cria um estúdio
+        /// </summary>
+        /// <returns>Resposta ao usuário</returns>
         [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult Create(StudioDomain studio)

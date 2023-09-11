@@ -21,6 +21,10 @@ namespace senai.inlock.webApi.Controllers
             _userRepository = new UserRepository();
         }
 
+        /// <summary>
+        /// É o endpoint no qual o usuário se loga e é gerado um token
+        /// </summary>
+        /// <returns>Resposta ao usuário</returns>
         [HttpPost]
         public IActionResult Login(UserTransfer user)
         {
