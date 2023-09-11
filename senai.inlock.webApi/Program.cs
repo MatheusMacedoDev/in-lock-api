@@ -1,3 +1,4 @@
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -8,6 +9,26 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Adding the controllers to services
 builder.Services.AddControllers();
+
+// JWT Bearer Service
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultChallengeScheme = "JwtBearer";
+    options.DefaultAuthenticateScheme = "JwtBearer";
+})
+.AddJwtBearer("JwtBearer", options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("inlock-chave-autenticacao-webapi-dev")),
+        ClockSkew = TimeSpan.FromMinutes(5),
+        ValidIssuer = "senai.inlock.webApi",
+        ValidAudience = "senai.inlock.webApi"
+    };
+});
 
 // Swagger service
 builder.Services.AddSwaggerGen(options =>
@@ -74,5 +95,9 @@ if (app.Environment.IsDevelopment())
 
 // Use the created controllers
 app.MapControllers();
+
+// Enable authentication and authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
